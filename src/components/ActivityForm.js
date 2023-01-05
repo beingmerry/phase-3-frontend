@@ -1,6 +1,8 @@
 import {Button, Form} from 'react-bootstrap';
 
 function ActivityForm() {
+
+  //🎯 Turning this into a user form, since activity list is a static relationships not belong to or has many w/ anything
     return (
       <Form>
         <Form.Group className="mb-3" controlId="formBasic">
