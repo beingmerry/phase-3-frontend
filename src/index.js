@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
-import { BrowserRouter as Router, createBrowserRouter, RouterProvider } from "react-router-dom";
+import App from './components/App';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import reportWebVitals from './reportWebVitals';
+import reportWebVitals from './assets/reportWebVitals';
+import './style/index.css'
 
 const router = createBrowserRouter([
   {

@@ -3,7 +3,7 @@ import { MdDelete, MdEdit } from 'react-icons/md'
 import {BsFillCheckSquareFill} from 'react-icons/bs'
 function ActivityCard({ activity, setCurrentActivity }) {
   const {activity_name, item_first, item_second, item_third, activity_image_url} = activity;
-
+  // use setCurrentActivity to set the detailed view on that activityCard
   const handleCurrentActivity = (e) =>{
     setCurrentActivity(activity)
     console.log(activity);
@@ -32,7 +32,7 @@ function ActivityCard({ activity, setCurrentActivity }) {
             {item_second}
           </ListGroup.Item>
           <ListGroup.Item>
-            {item_third} 
+            {item_third}
           </ListGroup.Item>
         </ListGroup>
       </Card.Body>
