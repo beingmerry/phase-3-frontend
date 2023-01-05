@@ -3,7 +3,7 @@ import { MdDelete, MdEdit } from 'react-icons/md'
 
 function StoreCard({ store }) {
   const {store_name, item_1, item_2, item_3, item_4, item_1_cost, item_2_cost, item_3_cost, item_4_cost} = store;
-
+  // 🎯 Add in the purchase data underneath for the store
   return (
     <Card>
       <Card.Body className="text-center">
@@ -15,16 +15,16 @@ function StoreCard({ store }) {
         <br/>
         <ListGroup>
           <ListGroup.Item>
-            {item_1} {item_1_cost}
+            {item_1} ${item_1_cost}
         </ListGroup.Item>
           <ListGroup.Item>
-            {item_2} {item_2_cost}
+            {item_2} ${item_2_cost}
           </ListGroup.Item>
           <ListGroup.Item>
-            {item_3} {item_3_cost}
+            {item_3} ${item_3_cost}
         </ListGroup.Item>
           <ListGroup.Item>
-            {item_4} {item_4_cost} 
+            {item_4} ${item_4_cost}
         </ListGroup.Item>
         </ListGroup>
       </Card.Body>

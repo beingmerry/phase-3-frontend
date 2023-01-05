@@ -10,12 +10,16 @@ import ActivityForm from "./ActivityForm";
 // 🏪 Store Imports
 import StoreCard from "./StoreCard";
 import StoreForm from "./StoreForm";
+// 👤 User Imports
+import UserCard from "./UserCard";
 
 
 function App() {
   const [activities, setActivities] = useState([]);
   const [stores, setStores] = useState([]);
   const [currentActivity, setCurrentActivity] = useState({})
+  const [users, setUsers] = useState([]);
+  const [currentUser, setCurrentUser] = useState({})
 
   useEffect(() => {
     fetch(`http://localhost:9292/activities`)
@@ -28,6 +32,12 @@ function App() {
       .then((res) => res.json())
       .then((stores) => {
         setStores(stores);
+      });
+    fetch(`http://localhost:9292/users`)
+      .then((res) => res.json())
+      .then((users) => {
+        setUsers(users);
+        setCurrentUser(users[0])
       });
   }, []);
 
@@ -62,6 +72,7 @@ function App() {
         <Routes>
           <Route path="" element={<div></div>} />
         </Routes>
+        <UserCard user={currentUser} setCurrentUser={setCurrentUser} activities={activities}/>
         <ActivityDetails currentActivity={currentActivity} />
         <CardGroup className="card-group">
           {activityCards}
