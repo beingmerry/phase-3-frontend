@@ -1,11 +1,16 @@
+// 🚀 React Imports
 import React from "react";
-import ActivityCard from "./ActivityCard";
-import StoreCard from "./StoreCard";
-import ActivityForm from "./ActivityForm";
-import StoreForm from "./StoreForm";
 import { useState, useEffect } from "react";
-import { Routes, Route, Link } from "react-router-dom";
-import { Navbar, Nav, NavLink, Container, CardGroup } from "react-bootstrap";
+import { Routes, Route } from "react-router-dom";
+import { Navbar, NavLink, Container, CardGroup } from "react-bootstrap";
+// 🏃 Activity Imports
+import ActivityCard from "./ActivityCard";
+import ActivityDetails from "./ActivityDetails";
+import ActivityForm from "./ActivityForm";
+// 🏪 Store Imports
+import StoreCard from "./StoreCard";
+import StoreForm from "./StoreForm";
+
 
 function App() {
   const [activities, setActivities] = useState([]);
@@ -57,6 +62,7 @@ function App() {
         <Routes>
           <Route path="" element={<div></div>} />
         </Routes>
+        <ActivityDetails currentActivity={currentActivity} />
         <CardGroup className="card-group">
           {activityCards}
         </CardGroup>
