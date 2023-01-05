@@ -6,12 +6,12 @@ import { Navbar, NavLink, Container, CardGroup } from "react-bootstrap";
 // 🏃 Activity Imports
 import ActivityCard from "./ActivityCard";
 import ActivityDetails from "./ActivityDetails";
-import ActivityForm from "./ActivityForm";
 // 🏪 Store Imports
 import StoreCard from "./StoreCard";
 import StoreForm from "./StoreForm";
 // 👤 User Imports
 import UserCard from "./UserCard";
+import UserForm from "./UserForm";
 
 
 function App() {
@@ -20,6 +20,7 @@ function App() {
   const [currentActivity, setCurrentActivity] = useState({})
   const [users, setUsers] = useState([]);
   const [currentUser, setCurrentUser] = useState({})
+  const [purchases, setPurchases] = useState([])
 
   useEffect(() => {
     fetch(`http://localhost:9292/activities`)
@@ -39,6 +40,11 @@ function App() {
         setUsers(users);
         setCurrentUser(users[0])
       });
+    fetch(`http://localhost:9292/purchases`)
+      .then((res) => res.json())
+      .then((purchases) => {
+        setPurchases(purchases)
+      });
   }, []);
 
   const activityCards = activities.map((activity) => {
@@ -56,9 +62,13 @@ function App() {
       <StoreCard
         key={store.id}
         store={store}
+        user={currentUser}
+        purchases={purchases}
+        setPurchases={setPurchases}
       />
     );
   });
+
 
 
 
@@ -72,13 +82,13 @@ function App() {
         <Routes>
           <Route path="" element={<div></div>} />
         </Routes>
-        <UserCard user={currentUser} setCurrentUser={setCurrentUser} activities={activities}/>
+        <UserCard user={currentUser} setCurrentUser={setCurrentUser} activities={activities} purchases={purchases}/>
         <ActivityDetails currentActivity={currentActivity} />
         <CardGroup className="card-group">
           {activityCards}
         </CardGroup>
         <br/>
-        <ActivityForm/>
+        <UserForm currentUser={currentUser} setCurrentUser={setCurrentUser} users={users}/>
         <br />
         <CardGroup className="card-group">
           {storeCards}
