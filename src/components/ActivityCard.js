@@ -1,13 +1,12 @@
 import { Card, ListGroup, Button } from "react-bootstrap";
-import { MdDelete, MdEdit } from 'react-icons/md'
-import {BsFillCheckSquareFill} from 'react-icons/bs'
+import {BsFillCheckSquareFill} from 'react-icons/bs' // BsSquareFill, <- use me for non-currentActivity
 function ActivityCard({ activity, setCurrentActivity }) {
   const {activity_name, item_first, item_second, item_third, activity_image_url} = activity;
   // use setCurrentActivity to set the detailed view on that activityCard
   const handleCurrentActivity = (e) =>{
     setCurrentActivity(activity)
-    console.log(activity);
   }
+  
 
   return (
     <Card>
@@ -19,8 +18,6 @@ function ActivityCard({ activity, setCurrentActivity }) {
       <Card.Body className="text-center">
         <Card.Title className="fs-6">
           {activity_name}
-          <Button size="sm" variant="secondary" className="float-end">{<MdEdit/>}</Button>
-          <Button size="sm" variant="danger" className="float-end">{<MdDelete/>}</Button>
           <Button size="sm" variant="primary" className="float-end" onClick={() => handleCurrentActivity()}>{<BsFillCheckSquareFill/>}</Button>
         </Card.Title>
         <br />

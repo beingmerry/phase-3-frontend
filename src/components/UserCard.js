@@ -32,7 +32,7 @@ function UserCard ({ user, activities, purchases, setPurchases }) {
   return favoriteActivity === undefined ? (
     <> </>
   ) : (
-    <Card>
+    <Card id={user.id} key={user.id}>
       <Card.Img
         variant='top'
         className='py-3 card-img'

@@ -82,7 +82,7 @@ function ReviewForm ({ item, setPurchases, purchases }) {
             className='px-auto'
             onClick={handlePurchaseDelete}
           >
-            Delete Review
+            Return Item
           </Button>
         </Form>
       </Collapse>
