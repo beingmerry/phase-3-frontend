@@ -1,29 +1,11 @@
 // ⚠️ 2023-01-05 | BEN | cannot get this to work for interest, going to have to go through favorite activity and purchases only! Still fun though
-import { useState, useEffect } from 'react'
+// import { useState, useEffect } from 'react'
 import { Card, ListGroup } from 'react-bootstrap' // , Button, Form
 import { MdStarRate } from 'react-icons/md'
-import ReviewForm from './ReviewForm';
+import ReviewForm from './ReviewForm'
 
 // import {BsFillCheckSquareFill} from 'react-icons/bs'
-function UserCard ({ user, activities, purchases }) {
-  // const [interestedActivities, setInterestedActivities] = useState([])
-  // 🪃🔁 EVERY time currentUser changes
-
-  // useEffect(() => {
-  //   fetch(`http://localhost:9292/user/${user.id}/activities`)
-  //     .then(res => res.json())
-  //     .then(
-  //       data => {
-  //         setInterestedActivities(data)
-  //       },
-  //       [user]
-  //     )
-  // })
-  // const interests = interestedActivities.map(item => (
-  //   <ListGroup.Item>{item.activity_name}</ListGroup.Item>
-  // ))
-  const [open, setOpen] = useState(false);
-
+function UserCard ({ user, activities, purchases, setPurchases }) {
   const { favorite_activity, name, password } = user
   const favoriteActivity = activities.filter(activity => {
     return activity.activity_name === favorite_activity
@@ -31,14 +13,19 @@ function UserCard ({ user, activities, purchases }) {
   const userPurchases = purchases.filter(
     purchase => purchase.user_id === user.id
   )
- 
   const userOwns = userPurchases.map(item => (
     <ListGroup.Item>
-      {item.item_name} 
-      <br/>
-      {item.review} {Array(item.star_rating).fill('').map(purchases=><MdStarRate/>)}/ 5
-      <br/>
-      <ReviewForm item={item}/>
+      {item.item_name}
+      <br />
+      {item.review}{' '}
+      {Array(item.star_rating)
+        .fill('')
+        .map(purchases => (
+          <MdStarRate />
+        ))}
+      / 5
+      <br />
+      <ReviewForm item={item} setPurchases={setPurchases} purchases={purchases} />
     </ListGroup.Item>
   ))
   // ⚠️ ?? patch endpoint for changing your favorite activity from list of activities ?
@@ -102,3 +89,20 @@ function UserCard ({ user, activities, purchases }) {
 }
 
 export default UserCard
+
+// const [interestedActivities, setInterestedActivities] = useState([])
+// 🪃🔁 EVERY time currentUser changes
+
+// useEffect(() => {
+//   fetch(`http://localhost:9292/user/${user.id}/activities`)
+//     .then(res => res.json())
+//     .then(
+//       data => {
+//         setInterestedActivities(data)
+//       },
+//       [user]
+//     )
+// })
+// const interests = interestedActivities.map(item => (
+//   <ListGroup.Item>{item.activity_name}</ListGroup.Item>
+// ))
