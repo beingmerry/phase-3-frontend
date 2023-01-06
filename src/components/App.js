@@ -12,6 +12,7 @@ import StoreForm from './StoreForm'
 // 👤 User Imports
 import UserCard from './UserCard'
 import UserSelect from './UserSelect'
+import UserForm from './UserForm'
 
 function App () {
   const [activities, setActivities] = useState([])
@@ -47,6 +48,46 @@ function App () {
       })
   }, [])
 
+  const handleSetStores = store => {
+    fetch(`http://localhost:9292/stores`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(store)
+    })
+      .then(response => response.json())
+      .then(newStore => {
+        setStores([...stores, newStore])
+      })
+  }
+  function handleStoreDelete (deletedStore) {
+    debugger
+    fetch(`http://localhost:9292/stores/${deletedStore.id}`, {
+      method: 'DELETE'
+    }).then(resp => {
+      setStores(stores.filter(store => store.id !== deletedStore.id))
+      if (resp.status !== 200) {
+        console.error(resp)
+      }
+    })
+  }
+
+  const handleSetUsers = user => {
+    fetch(`http://localhost:9292/users`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(user)
+    })
+      .then(response => response.json())
+      .then(newUser => {
+        setUsers([...users, newUser])
+      })
+    setUsers([...users, user])
+  }
+
   const activityCards = activities.map(activity => {
     return (
       <ActivityCard
@@ -65,6 +106,7 @@ function App () {
         user={currentUser}
         purchases={purchases}
         setPurchases={setPurchases}
+        handleStoreDelete={handleStoreDelete}
       />
     )
   })
@@ -90,7 +132,8 @@ function App () {
       <CardGroup className='card-group'>{activityCards}</CardGroup>
       <CardGroup className='card-group'>{storeCards}</CardGroup>
       <br />
-      <StoreForm />
+      <StoreForm handleSetStores={handleSetStores} />
+      <UserForm handleSetUsers={handleSetUsers} />
     </Container>
   )
 }

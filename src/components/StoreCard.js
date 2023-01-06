@@ -1,9 +1,13 @@
 import { Card, ListGroup, Button } from 'react-bootstrap'
 import { MdDelete, MdEdit, MdShoppingBag } from 'react-icons/md'
 
-function StoreCard ({ store, purchases, user, setPurchases }) {
-  // const [purchasedItem, setPurchasedItem] = useState([]);
-
+function StoreCard ({
+  store,
+  purchases,
+  user,
+  setPurchases,
+  handleStoreDelete
+}) {
   const {
     store_name,
     item_1,
@@ -48,7 +52,12 @@ function StoreCard ({ store, purchases, user, setPurchases }) {
           <Button size='sm' variant='secondary' className='float-end'>
             {<MdEdit />}
           </Button>
-          <Button size='sm' variant='danger' className='float-end'>
+          <Button
+            onClick={() => handleStoreDelete(store)}
+            size='sm'
+            variant='danger'
+            className='float-end'
+          >
             {<MdDelete />}
           </Button>
         </Card.Title>
