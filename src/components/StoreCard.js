@@ -4,6 +4,8 @@ import { MdDelete, MdEdit, MdShoppingBag } from "react-icons/md";
 function StoreCard({ store, purchases, user, setPurchases}) {
   // const [purchasedItem, setPurchasedItem] = useState([]);
 
+  const {item_name, review, star_rating, cost, store_id, user_id} = purchases
+
   const {
     store_name,
     item_1,
