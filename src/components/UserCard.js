@@ -1,7 +1,9 @@
 // ⚠️ 2023-01-05 | BEN | cannot get this to work for interest, going to have to go through favorite activity and purchases only! Still fun though
-// import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { Card, ListGroup } from 'react-bootstrap' // , Button, Form
-// import { MdDelete, MdEdit } from 'react-icons/md'
+import { MdStarRate } from 'react-icons/md'
+import ReviewForm from './ReviewForm';
+
 // import {BsFillCheckSquareFill} from 'react-icons/bs'
 function UserCard ({ user, activities, purchases }) {
   // const [interestedActivities, setInterestedActivities] = useState([])
@@ -20,6 +22,8 @@ function UserCard ({ user, activities, purchases }) {
   // const interests = interestedActivities.map(item => (
   //   <ListGroup.Item>{item.activity_name}</ListGroup.Item>
   // ))
+  const [open, setOpen] = useState(false);
+
   const { favorite_activity, name, password } = user
   const favoriteActivity = activities.filter(activity => {
     return activity.activity_name === favorite_activity
@@ -27,9 +31,15 @@ function UserCard ({ user, activities, purchases }) {
   const userPurchases = purchases.filter(
     purchase => purchase.user_id === user.id
   )
-    // debugger
+ 
   const userOwns = userPurchases.map(item => (
-    <ListGroup.Item>{item.item_name}</ListGroup.Item>
+    <ListGroup.Item>
+      {item.item_name} 
+      <br/>
+      {item.review} {Array(item.star_rating).fill('').map(purchases=><MdStarRate/>)}/ 5
+      <br/>
+      <ReviewForm item={item}/>
+    </ListGroup.Item>
   ))
   // ⚠️ ?? patch endpoint for changing your favorite activity from list of activities ?
   return favoriteActivity === undefined ? (
@@ -78,10 +88,10 @@ function UserCard ({ user, activities, purchases }) {
           </ListGroup.Item>
         </ListGroup>
         <br />
-        <ListGroup>
+        {/* <ListGroup>
           <h3>Interests</h3>
           {/* {interests} */}
-        </ListGroup>
+        {/* </ListGroup> */}
         <ListGroup>
           <h3>Owns</h3>
           {userOwns}
