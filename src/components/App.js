@@ -11,7 +11,7 @@ import StoreCard from "./StoreCard";
 import StoreForm from "./StoreForm";
 // 👤 User Imports
 import UserCard from "./UserCard";
-import UserForm from "./UserForm";
+import UserSelect from "./UserSelect";
 
 
 function App() {
@@ -22,6 +22,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState({})
   const [purchases, setPurchases] = useState([])
 
+  // 1️⃣ TIME at page load
   useEffect(() => {
     fetch(`http://localhost:9292/activities`)
       .then((res) => res.json())
@@ -82,14 +83,12 @@ function App() {
         <Routes>
           <Route path="" element={<div></div>} />
         </Routes>
-        <UserCard user={currentUser} setCurrentUser={setCurrentUser} activities={activities} purchases={purchases}/>
+        <UserSelect setCurrentUser={setCurrentUser} users={users}/>
+        <UserCard user={currentUser} activities={activities} purchases={purchases}/>
         <ActivityDetails currentActivity={currentActivity} />
         <CardGroup className="card-group">
           {activityCards}
         </CardGroup>
-        <br/>
-        <UserForm currentUser={currentUser} setCurrentUser={setCurrentUser} users={users}/>
-        <br />
         <CardGroup className="card-group">
           {storeCards}
         </CardGroup>

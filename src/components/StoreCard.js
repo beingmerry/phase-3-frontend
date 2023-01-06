@@ -1,6 +1,5 @@
 import { Card, ListGroup, Button } from "react-bootstrap";
 import { MdDelete, MdEdit, MdShoppingBag } from "react-icons/md";
-import { useState, useEffect } from "react";
 
 function StoreCard({ store, purchases, user, setPurchases}) {
   // const [purchasedItem, setPurchasedItem] = useState([]);
@@ -18,7 +17,6 @@ function StoreCard({ store, purchases, user, setPurchases}) {
   } = store;
   // 🎯 Add in the purchase data underneath for the store
 
-  const { item_name, review, star_rating, cost } = purchases;
   // debugger
   const handlePurchase = (item_name, cost) => {
     // setPurchasedItem([]);
@@ -31,7 +29,7 @@ function StoreCard({ store, purchases, user, setPurchases}) {
       store_id: store.id,
       user_id: user.id
     };
-    debugger
+    // debugger
     fetch(`http://localhost:9292/purchases`, {
       method: "POST",
       headers: {
@@ -67,19 +65,19 @@ function StoreCard({ store, purchases, user, setPurchases}) {
           </ListGroup.Item>
           <ListGroup.Item>
             {item_2} ${item_2_cost}
-            <Button id="2" size="sm" variant="success" className="float-end" onClick={e => handlePurchase(e.target.id)}>
+            <Button id="2" size="sm" variant="success" className="float-end" onClick={e => handlePurchase(item_2, item_2_cost)}>
               {<MdShoppingBag />}
             </Button>
           </ListGroup.Item>
           <ListGroup.Item>
             {item_3} ${item_3_cost}
-            <Button id="3" size="sm" variant="success" className="float-end" onClick={e => handlePurchase(e.target.id)}>
+            <Button id="3" size="sm" variant="success" className="float-end" onClick={e => handlePurchase(item_3, item_3_cost)}>
               {<MdShoppingBag />}
             </Button>
           </ListGroup.Item>
           <ListGroup.Item>
             {item_4} ${item_4_cost}
-            <Button id="4" size="sm" variant="success" className="float-end" onClick={e => handlePurchase(e.target.id)}>
+            <Button id="4" size="sm" variant="success" className="float-end" onClick={e => handlePurchase(item_4, item_4_cost)}>
               {<MdShoppingBag />}
             </Button>
           </ListGroup.Item>
