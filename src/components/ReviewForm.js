@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import Button from 'react-bootstrap/Button'
-import Collapse from 'react-bootstrap/Collapse'
-import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/esm/Button'
+import Collapse from 'react-bootstrap/esm/Collapse'
+import Form from 'react-bootstrap/esm/Form'
 // import { MdStarRate } from 'react-icons/md'
 
 function ReviewForm ({ item, setPurchases, purchases }) {
